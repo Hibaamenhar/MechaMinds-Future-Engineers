@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries WRO Future Engineers 2026}\\[0.4em]
+  {\large Project Report --- Autonomous 4WD Smart Robot Car}\\[0.3em]
+  \rule{\linewidth}{1pt}
+\end{center}
+
+\medskip
+\noindent
+\textbf{Team Name:} [INSERT TEAM NAME] \hfill \textbf{Country:} Morocco \\
+\textbf{Members:} [Name 1], [Name 2], [Name 3] \hfill \textbf{Coach:} [INSERT COACH NAME]
+
+\rule{\linewidth}{0.4pt}
+
+\section*{1. Introduction}
+
+Our team designed and built an autonomous robot car for the WRO Future Engineers 2026
+challenge. The robot uses a Raspberry Pi 5 as its main controller, combined with a
+camera, an ultrasonic sensor, and an IMU to navigate the track, avoid obstacles, and
+complete the parking manoeuvre without any human input.
+
+\section*{2. Hardware}
+
+The robot is built on a 4WD aluminium chassis. The main components are:
+
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{Raspberry Pi 5} --- main controller, runs all software on-board.
+  \item \textbf{Camera Module 3 Wide} --- 120° FOV, used for lane detection and pillar recognition.
+  \item \textbf{HC-SR04 ultrasonic sensor} --- front-mounted, stops the robot if an obstacle is closer than 20 cm.
+  \item \textbf{MPU-6050 IMU} --- measures heading and helps with precise turns.
+  \item \textbf{TB6612FNG motor driver} --- controls the four DC motors independently.
+  \item \textbf{3S LiPo battery} --- powers the motors; a 5 V buck converter supplies the Pi.
+\end{itemize}
+
+\section*{3. Software}
+
+All code is written in Python. The program has three main parts:
+
+\begin{enumerate}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{Vision} --- OpenCV detects track boundaries and red/green pillars using HSV colour segmentation.
+  \item \textbf{Decision} --- combines camera output and IMU heading to compute a steering correction with a PD controller.
+  \item \textbf{Motor control} --- converts the steering correction into PWM signals for the left and right motor pairs.
+\end{enumerate}
+
+Obstacle avoidance rule: red pillar $\rightarrow$ pass on the right; green pillar $\rightarrow$ pass on the left.
+The robot detects pillars at around 80 cm to steer smoothly around them.
+
+\section*{4. Results}
+
+\begin{center}
+\begin{tabular}{lcc}
+  \toprule
+  Scenario & Attempts & Successes \\
+  \midrule
+  Open round (3 laps, no obstacles) & 10 & [X] \\
+  Obstacle round                    & 10 & [X] \\
+  Parking manoeuvre                 & 10 & [X] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The robot completed laps consistently. The main issue observed was [brief description, e.g.\ occasional detection failure under direct sunlight].
+
+\section*{5. Challenges}
+
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{Lighting changes} affected colour detection --- solved by adjusting HSV thresholds adaptively.
+  \item \textbf{IMU drift} caused small heading errors --- solved by re-zeroing the yaw at each lap start line.
+  \item \textbf{Motor asymmetry} made the robot drift sideways --- solved with a calibration offset stored in a config file.
+\end{itemize}
+
+\section*{6. Conclusion}
+
+We built a working autonomous vehicle that navigates the WRO track, avoids coloured pillars, and completes the parking sequence. The project taught us computer vision, sensor integration, and real-time control. We plan to improve pillar detection with a small neural network for the next stage.
+
+\end{document}
