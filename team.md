@@ -6,8 +6,16 @@ WRO Future Engineers 2026
 ## Country
 Morocco
 
+## Team Members
+- Hamza Ait Azizi  
+- Jannate Asname  
+- Fatima Boutaher  
+
+## Coach
+Prof. Rachid Dakir  
+
 ## Description
-MechaMinds is a student robotics team focused on autonomous systems, computer vision, and AI-based navigation.
+MechaMinds is a robotics team focused on autonomous systems, computer vision, and AI-based navigation.
 
 ## Goal
-To build an intelligent self-driving robot capable of completing the WRO Future Engineers challenge autonomously.
+To design and implement a fully autonomous robot capable of completing the WRO Future Engineers challenge.
